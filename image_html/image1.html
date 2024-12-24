@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Thông tin ảnh</title>
+  <style> 
+    img {
+      width: 200px; /* Chiều rộng bằng 100% kích thước container */
+      height: 300px; /* Chiều cao tự động điều chỉnh theo tỷ lệ */
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <img src="image/image_1.jpg" alt="Image 1" id="myImage">
+  <div id="aiText"></div>
+
+  <script>
+    // Lấy element img và div để hiển thị text AI
+    const imgElement = document.getElementById('myImage');
+    const aiTextElement = document.getElementById('aiText');
+
+    // Gọi hàm Google AI Studio API để nhận text AI từ ảnh
+    // Thay thế YOUR_API_KEY bằng API key của bạn
+    // và PROJECT_ID bằng ID dự án của bạn
+    fetch(`https://aiplatform.googleapis.com/v1/projects/592320128025/locations/us-central1/publishers/google/models/imagetext:predict?key=AIzaSyCymd7EU03mjIM0dVIkfhr6v8UTywnbtfo`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "instances": [
+          {
+            "content": imgElement.src // Truyền URL của ảnh hoặc base64 encoded image data
+          }
+        ],
+        "parameters": {
+          "sampleCount": 1,
+          "topK": 1
+        }
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Hiển thị text AI từ response
+      const aiText = data.predictions[0].candidates[0].output; 
+      aiTextElement.innerText = aiText;
+    })
+    .catch(error => {
+      console.error('Lỗi khi gọi API:', error);
+      aiTextElement.innerText = "Lỗi khi xử lý ảnh.";
+    });
+  </script>
+</body>
+</html>

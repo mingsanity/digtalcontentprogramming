@@ -1,0 +1,58 @@
+
+
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <title>Gallery</title>
+  <style>
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 cột cho hàng đầu tiên */
+      gap: 20px; 
+    }
+  
+  
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Căn giữa theo chiều ngang */
+    }
+  
+    img {
+      width: 200px; /* Chiều rộng bằng 100% kích thước container */
+      height: 300px; /* Chiều cao tự động điều chỉnh theo tỷ lệ */
+      object-fit: cover;
+    }
+  </style>
+  </head>
+  <body>
+  
+  <div class="gallery">
+      <div class="container">
+        <img src="image/image_1.jpg" alt="Image 1">
+        <button onclick="window.location.href='image_html/image1.html'">Thông tin</button>
+      </div>
+      <div class="container">
+        <img src="image/image_2.jpg" alt="Image 2">
+        <button onclick="window.location.href='image_html/image2.html'">Thông tin</button>
+      </div>
+      <div class="container">
+        <img src="image/image_3.jpg" alt="Image 3">
+        <button onclick="window.location.href='image_html/image3.html'">Thông tin</button>
+      </div>
+      <div class="container">
+        <img src="image/image_4.jpg" alt="Image 4">
+        <button onclick="window.location.href='image_html/image4.html'">Thông tin</button>
+      </div>
+      <div class="container">
+        <img src="image/image_5.jpg" alt="Image 5">
+        <button onclick="window.location.href='image_html/image5.html'">Thông tin</button>
+      </div>
+      <div class="container">
+        <img src="image/image_6.jpg" alt="Image 6">
+        <button onclick="window.location.href='image_html/image6.html'">Thông tin</button>
+      </div>
+  </div>
+  
+  </body>
+  </html>
